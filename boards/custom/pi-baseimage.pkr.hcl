@@ -56,7 +56,7 @@ build {
     inline = [
       "touch /boot/ssh", // enable ssh
       // configure wifi
-      "echo 'country=FR\nctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\nnetwork={\nssid=\"{{ssid}}\"\npsk=\"{{password}}\"\n}' > /boot/wpa_supplicant.conf", 
+      "echo 'country=FR\nctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\nnetwork={\nssid=\"{{WIFI_SSID}}\"\npsk=\"{{WIFI_PASS}}\"\n}' > /boot/wpa_supplicant.conf", 
       // disable embedded audio and hdmi audio
       "sed -i s/dtparam=audio=on/#dtparam=audio=on/g /boot/config.txt", 
       "sed -i s/dtoverlay=vc4-kms-v3d/dtoverlay=vc4-kms-v3d,audio=off/g /boot/config.txt", 
