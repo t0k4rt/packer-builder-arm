@@ -56,7 +56,7 @@ build {
     inline = [
       "touch /boot/ssh", // enable ssh
       // configure wifi
-      "echo 'country=FR\nctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\nnetwork={\nssid=\"Roche Cléandre\"\npsk=\"Estcequilpleut?\"\n}' > /boot/wpa_supplicant.conf", 
+      "echo 'country=FR\nctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\nnetwork={\nssid=\"{{ssid}}\"\npsk=\"{{password}}\"\n}' > /boot/wpa_supplicant.conf", 
       // disable embedded audio and hdmi audio
       "sed -i s/dtparam=audio=on/#dtparam=audio=on/g /boot/config.txt", 
       "sed -i s/dtoverlay=vc4-kms-v3d/dtoverlay=vc4-kms-v3d,audio=off/g /boot/config.txt", 
@@ -83,7 +83,7 @@ build {
       // create future user
       "useradd tok",
       // this usr will be used when userconfig service will be launch at first start 
-      "echo tok:unsecurepasswordtochange > /boot/userconf.txt", 
+      "echo {{USER_NAME}}:{{USER_PASS}} > /boot/userconf.txt", 
       "mkdir -p /home/tok/.ssh/", 
       "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC58vYqlkc87Wv59C66lUIyIsixZZXWS+mezfRvy7YC6npZH65K9zMmISiym5KZOoOsE1uu5tigUHzMUuDF8ZI/ggk7NqpJ2hq9KRqq6mCPSgbYBByOAPIHkiM/cC5/L4vUmtnTWbdQfF+0aeM3yly7joCeNg03LmVCetLcPQfDexlYFG6jW/f5txO/F1GWq8miYR/5BogIjtwG2t2ZcRjEe3S5TY+3G3O9hG6sZVQFw3khpCA+9hUy64a6FYgZVIWs89sJjoN8aTkFMjdmso/u6Di2I97kQvIg47H6vr+cULlCQNq/LMMjV8hmkmZku1KmIJUgFxH1Vp5VmPuVjq2uutPWI/djhbNtdL+KufRueYLYyAg17b3Ravx3MnRsJS3olywTHCC3L3LsCjZuOXHHfvtiMipC+QzmYwcvSzmT4YA2XfA4hTvo4QijvvsGiGCKGwFcoQZdr8GdZIAE2MuN1y8W7j0sBDeL2x/kVvV8YFE2InTOeJWyLlhWEdlwQ2r42NdiUHqZarIvRjY8XIUu2fZGmrfcXxDIscYN56fruwTd61M+Ttc3ajfInVeCApA8DcCpWTnSGHYvNugrni4cTBmblzY6fIOsGgkvwcnhvZuirjQphPRp+Lp0k+IgWWiDo/IGA4Hzq0vYTgWy+84xA1Yyul2cyeFobpBS5LXb0Q== alexandre@macbook-pro.home' >> /home/tok/.ssh/authorized_keys", 
       "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDHqF237lW3zU6rPIm0XHA4DvdEEG96xCx3MpgmC4AJePPba0DDJDs36oJ0aGoMYYuOlSFKqF/5DKo4HoZusu6teXhhH/Ke1a8+dkpSr1TyG4yRIBo+q2Tg2GpuYCjE87f8cFTk5vmnmOOQudwVoSuSGo/K3JbVJE6RqhxMO94YX7OYmhbzEYj300FVk/FVGexxWolT+iR1CpYEO2DPkoOhZ0i/KyXF8oQWpa46jCREHTOfc6vF+DlAODLRSkEp98gPlPGVhQm0Csj44R5SG94cAOfRXjOQQZ05ONDvCrB+sXvrKR8f9QamHyx7yWlazEkywRoCVELvawvQ9g0D2L2HQ3LklxZKEvqL/0Fu7MpD7Kgk4bEiMij30yJCRUmMFStoFgCztXdIK7mnSfal0zGQOCw7xPfSPTqHeBt4SxkhZLtjUtyURn7XtJyxm7r8q/8ehQYSV0nUSFfBEH2zAe7PkHx9q91ukhWmM497oXGLhKolUUzb+CTCa/CNWPucguYqccMPXRIDoXn/VWd5MjhxnxwrR6jy1Rj+Ho01YRndaA5TGUHAZUuY680GqwF/b9rsIe8J0WE9k9CXhfqzKHguJx+ES6FbQSlaZhXFrIDZW6OaayDrKkZ3ICOcg5Dc4vbOPC6HU0EnA4/aREIgEpmZDMYllOQ0pluPuB0ncWkHRQ== tok@fedora' >> /home/tok/.ssh/authorized_keys", 
